@@ -10,7 +10,7 @@ from django.urls import reverse
 
 from example.users.forms import UserChangeForm
 from example.users.models import User
-from example.users.tests.factories import UserFactory
+from example.tests.users.factories import UserFactory
 from example.users.views import (
     UserRedirectView,
     UserUpdateView,
