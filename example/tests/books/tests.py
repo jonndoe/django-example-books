@@ -1,14 +1,29 @@
+from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
 from django.urls import reverse
-from example.books.models import Book
+
+from example.books.models import Book, Review
 
 
 class BookTests(TestCase):
+
     def setUp(self):
+        self.user = get_user_model().objects.create_user(
+            username='someuser',
+            email='someuser@email.com',
+            password='testpass123'
+        )
+
         self.book = Book.objects.create(
         title='Harry Potter',
         author='JK Rowling',
         price='25.00',
+        )
+
+        self.review = Review.objects.create(
+            book=self.book,
+            author=self.user,
+            review='A very cool book!',
         )
 
     def test_book_listing(self):
@@ -28,4 +43,5 @@ class BookTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(no_response.status_code, 404)
         self.assertContains(response, 'Harry Potter')
+        self.assertContains(response, 'A very cool book!')
         self.assertTemplateUsed(response, 'books/book_detail.html')
