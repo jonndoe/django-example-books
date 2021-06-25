@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class BooksConfig(AppConfig):
-    name = 'example.books'
+    name = "example.books"

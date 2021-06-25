@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from django.views.generic import ListView
 
-# Create your views here.
+# use this import instead of short 'from .models' to escape RuntimeErros
+# https://medium.com/@michal.bock/fix-weird-exceptions-when-running-django-tests-f58def71b59a
+from example.books.models import Book
+
+
+class BookListView(ListView):
+    model = Book
+    context_object_name = "book_list"
+    template_name = "books/book_list.html"
