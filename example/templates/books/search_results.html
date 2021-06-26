@@ -3,12 +3,28 @@
 {% block title %}Search{% endblock title %}
 
 {% block content %}
-  <h1>Search Results</h1>
-  {% for book in book_list %}
-    <div>
-      <h3><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></h3>
-      <p>Author: {{ book.author }}</p>
-      <p>Price: $ {{ book.price }}</p>
-    </div>
-  {% endfor %}
+  <div class="jumbotron text-center" style="margin-bottom:0">
+    <h1>Поиск</h1>
+    <p>Кликните, что бы увидеть подробно</p>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Книга</th>
+        <th scope="col">Автор</th>
+        <th scope="col">Цена</th>
+        <th scope="col">Наличие</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for book in book_list %}
+      <tr>
+        <th scope="row"><h3><a class="nounderline" href="{{ book.get_absolute_url }}">{{ book.title }}</a></h3></th>
+        <td>{{ book.author }}</td>
+        <td>{{ book.price }}</td>
+        <td>Not in stock</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
 {% endblock content %}

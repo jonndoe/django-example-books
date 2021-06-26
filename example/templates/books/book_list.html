@@ -3,9 +3,28 @@
 
 
 {% block content %}
-  {% for book in book_list %}
-    <div>
-      <h2><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></h2>
-    </div>
-  {% endfor %}
+  <div class="jumbotron text-center" style="margin-bottom:0">
+    <h1>Books for sale</h1>
+    <p>Click to see the details</p>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Book</th>
+        <th scope="col">Author</th>
+        <th scope="col">Price</th>
+        <th scope="col">Availability</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for book in book_list %}
+      <tr>
+        <th scope="row"><h3><a class="nounderline" href="{{ book.get_absolute_url }}">{{ book.title }}</a></h3></th>
+        <td>{{ book.author }}</td>
+        <td>{{ book.price }}</td>
+        <td>Not in stock</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
 {% endblock content %}
